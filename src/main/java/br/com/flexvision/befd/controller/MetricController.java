@@ -10,27 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.flexvision.befd.flex4.dto.DetailSerie;
 import br.com.flexvision.befd.flex4.dto.Metric;
 import br.com.flexvision.befd.flex4.dto.Serie;
 import br.com.flexvision.befd.flex4.service.MetricService;
 
 @Controller
+@CrossOrigin(origins = "*")
 @RequestMapping("/metric")
 public class MetricController extends MainController{
 
 	@Autowired
 	private MetricService service; 
 	
-	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/listMetricWithType", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
 	public @ResponseBody List<Metric> getListMetrics() {
 		return service.listAllMetrics();
 	}
 
-	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/listSerie", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON)
-	public @ResponseBody List<Serie> getListData(@RequestBody Metric metric) {
-		return service.getListData(metric);
+	public @ResponseBody List<DetailSerie> getListData(@RequestBody List<Metric> metrics) {
+		return service.getListData(metrics);
 	}
 
 }

@@ -1,12 +1,28 @@
 package br.com.flexvision.befd.flex4.dto;
 
-public class Metric {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+public class Metric implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2328241671911254760L;
+	
 	private int met_id;
 	private String name;
+	private String tituloSerie;
 	private int ndt_id;
 	private String unit_type;
-
+	private List<SubItem> options;
+	
+	public Metric() {
+		super();
+		this.options = new ArrayList<SubItem>();
+	}
+	
 	public int getMet_id() {
 		return met_id;
 	}
@@ -31,5 +47,17 @@ public class Metric {
 	public void setUnit_type(String unit_type) {
 		this.unit_type = unit_type;
 	}
-	
+	public List<SubItem> getOptions() {
+		return options;
+	}
+	public void setOptions(List<SubItem> options) {
+		this.options = options;
+	}
+	public String getTituloSerie() {
+		return tituloSerie;
+	}
+	public void setTituloSerie(String tituloSerie) {
+		this.tituloSerie = tituloSerie;
+	}
+
 }
