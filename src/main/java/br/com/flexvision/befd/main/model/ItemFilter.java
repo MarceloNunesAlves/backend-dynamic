@@ -5,14 +5,17 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class ItemFilter {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
@@ -26,6 +29,10 @@ public class ItemFilter {
 	private String unit_type;
 	@OneToMany
 	private List<OptionException> options;
+	
+	@ManyToOne
+	@JoinColumn(name = "widget_id")
+	private Widget widget;
 
 	public Integer getId() {
 		return id;
@@ -73,6 +80,14 @@ public class ItemFilter {
 
 	public void setOptions(List<OptionException> options) {
 		this.options = options;
+	}
+
+	public Widget getWidget() {
+		return widget;
+	}
+
+	public void setWidget(Widget widget) {
+		this.widget = widget;
 	}
 
 }

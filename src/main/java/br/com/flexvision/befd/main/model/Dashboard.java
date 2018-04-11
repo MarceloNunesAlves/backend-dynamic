@@ -4,14 +4,17 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class Dashboard {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
@@ -27,6 +30,14 @@ public class Dashboard {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public String getTitleDash() {
+		return titleDash;
+	}
+
+	public void setTitleDash(String titleDash) {
+		this.titleDash = titleDash;
 	}
 
 	public List<RowView> getRowsView() {

@@ -51,8 +51,8 @@ public class Flex4DbConfig {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	    em.setJpaVendorAdapter(vendorAdapter);
 	    HashMap<String, String> properties = new HashMap<>();
-	    properties.put("hibernate.ddl-auto", "none");
-	    properties.put("hibernate.show-sql", "true");
+	    properties.put("hibernate.ddl.auto", "none");
+	    properties.put("hibernate.show.sql", "true");
 	    em.setJpaPropertyMap(properties);
 		return em;
 	}

@@ -50,14 +50,12 @@ public class MainDbConfig {
 	@Bean(name = "entityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("dataSource") DataSource dataSource) {
-		//spring.jpa.hibernate.ddl-auto=update
-		//spring.jpa.show-sql=true
 		LocalContainerEntityManagerFactoryBean em = builder.dataSource(dataSource).packages("br.com.flexvision.befd.main").persistenceUnit("spring").build();
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	    em.setJpaVendorAdapter(vendorAdapter);
 	    HashMap<String, String> properties = new HashMap<>();
-	    properties.put("hibernate.ddl-auto", "none");
-	    properties.put("hibernate.show-sql", "true");
+	    properties.put("hibernate.hbm2ddl.auto", "update");
+	    properties.put("hibernate.show.sql", "true");
 	    em.setJpaPropertyMap(properties);
 		return em;
 	}

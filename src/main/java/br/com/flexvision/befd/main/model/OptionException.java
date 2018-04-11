@@ -3,14 +3,17 @@ package br.com.flexvision.befd.main.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import br.com.flexvision.befd.flex4.dto.TypeOrigin;
 
 @Entity
 public class OptionException {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	@Column
@@ -19,6 +22,9 @@ public class OptionException {
 	private boolean com = false;
 	@Column
 	private TypeOrigin origin;
+	@ManyToOne
+	@JoinColumn(name = "itemFilter_id")
+	private ItemFilter itemFilter;
 
 	public int getId() {
 		return id;
@@ -50,6 +56,14 @@ public class OptionException {
 
 	public void setOrigin(TypeOrigin origin) {
 		this.origin = origin;
+	}
+
+	public ItemFilter getItemFilter() {
+		return itemFilter;
+	}
+
+	public void setItemFilter(ItemFilter itemFilter) {
+		this.itemFilter = itemFilter;
 	}
 	
 }

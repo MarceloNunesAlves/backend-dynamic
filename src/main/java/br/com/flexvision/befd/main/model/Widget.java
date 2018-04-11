@@ -4,13 +4,17 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Widget {
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
@@ -25,6 +29,10 @@ public class Widget {
 
 	@OneToMany
 	private List<ItemFilter> optionGraph;
+	
+	@ManyToOne
+	@JoinColumn(name = "rowView_id")
+	private RowView rowView;
 
 	public Integer getId() {
 		return id;
@@ -65,4 +73,13 @@ public class Widget {
 	public void setOptionGraph(List<ItemFilter> optionGraph) {
 		this.optionGraph = optionGraph;
 	}
+
+	public RowView getRowView() {
+		return rowView;
+	}
+
+	public void setRowView(RowView rowView) {
+		this.rowView = rowView;
+	}
+	
 }
