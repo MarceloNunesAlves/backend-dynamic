@@ -38,4 +38,9 @@ public class RowViewController extends MainController{
 		return service.save(rowView);
 	}
 
+	@RequestMapping(value="/delete", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON)
+	public void delete(@RequestBody RowView rowView) {
+		service.delete(rowView);
+	}
+
 }

@@ -1,5 +1,6 @@
 package br.com.flexvision.befd.main.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,8 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Widget {
+public class Widget implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6444280083288680326L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -28,7 +34,7 @@ public class Widget {
 	@Column
 	private String caption;
 
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<ItemFilter> optionGraph;
 
 	public Integer getId() {

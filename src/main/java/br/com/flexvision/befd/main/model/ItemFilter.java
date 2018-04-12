@@ -1,5 +1,6 @@
 package br.com.flexvision.befd.main.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,8 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class ItemFilter {
+public class ItemFilter implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1704802647246877006L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -29,7 +35,7 @@ public class ItemFilter {
 	private int ndt_id;
 	@Column
 	private String unit_type;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<OptionException> options;
 
 	public Integer getId() {

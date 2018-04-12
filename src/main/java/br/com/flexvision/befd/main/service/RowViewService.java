@@ -14,7 +14,6 @@ public class RowViewService {
 	private RowViewDAO dao;
 	
 	public RowView save(RowView rowView) {
-		System.out.println(rowView);
 		return dao.save(rowView);
 	}
 	
@@ -25,4 +24,9 @@ public class RowViewService {
 	public Optional<RowView> findById(Integer id) {
 		return dao.findById(id);
 	}
+
+	public void delete(RowView rowView) {
+		dao.delete(rowView);
+	}
+
 }
