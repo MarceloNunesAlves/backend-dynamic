@@ -45,21 +45,21 @@ public class MetricService {
 					switch (item.getOrigin()) {
 						case SITE:
 							if(item.isCom())
-								withSite.add(item.getId());
+								withSite.add(item.getIdOri());
 							else
-								withoutSite.add(item.getId());
+								withoutSite.add(item.getIdOri());
 							break;
 						case GROUP:
 							if(item.isCom())
-								withGroup.add(item.getId());
+								withGroup.add(item.getIdOri());
 							else
-								withoutGroup.add(item.getId());
+								withoutGroup.add(item.getIdOri());
 							break;
 						case NODE:
 							if(item.isCom())
-								withNode.add(item.getId());
+								withNode.add(item.getIdOri());
 							else
-								withoutNode.add(item.getId());
+								withoutNode.add(item.getIdOri());
 							break;
 						default:
 							break;

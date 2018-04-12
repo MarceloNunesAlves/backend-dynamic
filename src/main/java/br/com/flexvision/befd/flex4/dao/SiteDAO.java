@@ -35,7 +35,7 @@ public class SiteDAO extends BaseFlex4DAO{
 		results.stream().forEach((record) -> {
 			SubItem s = new SubItem();
 	        int i=0;
-	        s.setId((Integer) record[i++]);
+	        s.setIdOri((Integer) record[i++]);
 	        s.setName((String) record[i++]);
 	        s.setOrigin(TypeOrigin.SITE);
 	        listSites.add(s);

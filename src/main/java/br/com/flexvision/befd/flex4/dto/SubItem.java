@@ -9,16 +9,16 @@ public class SubItem implements Serializable{
 	 */
 	private static final long serialVersionUID = -2216670632294044657L;
 	
-	private int id;
+	private int idOri;
 	private String name;
 	private boolean com=false;
 	private TypeOrigin origin;
 	
-	public int getId() {
-		return id;
+	public int getIdOri() {
+		return idOri;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdOri(int idOri) {
+		this.idOri = idOri;
 	}
 	public String getName() {
 		return name;

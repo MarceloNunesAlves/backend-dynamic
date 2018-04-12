@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import br.com.flexvision.befd.main.model.Dashboard;
 import br.com.flexvision.befd.main.model.RowView;
 import br.com.flexvision.befd.main.service.RowViewService;
 
@@ -26,9 +28,9 @@ public class RowViewController extends MainController{
 		return service.findById(id);
 	}
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
-	public @ResponseBody Iterable<RowView> getListAll() {
-		return service.listAll();
+	@RequestMapping(value="/listByDashboard", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON)
+	public @ResponseBody Iterable<RowView> getListByDashboard(@RequestBody Dashboard dashboard) {
+		return service.listByDashboard(dashboard);
 	}
 
 	@RequestMapping(value="/", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON)
