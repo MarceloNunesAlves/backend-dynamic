@@ -25,8 +25,8 @@ public class RowViewService {
 		return dao.findById(id);
 	}
 
-	public void delete(RowView rowView) {
-		dao.delete(rowView);
+	public void delete(Integer id) {
+		dao.deleteById(id);
 	}
 
 }

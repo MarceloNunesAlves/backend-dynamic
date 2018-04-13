@@ -23,4 +23,8 @@ public class WidgetService {
 	public Optional<Widget> findById(Integer id) {
 		return dao.findById(id);
 	}
+	
+	public void deleteById(Integer id) {
+		dao.deleteById(id);
+	}
 }

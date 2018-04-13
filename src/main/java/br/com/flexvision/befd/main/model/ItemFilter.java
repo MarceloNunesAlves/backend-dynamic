@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -35,7 +36,8 @@ public class ItemFilter implements Serializable {
 	private int ndt_id;
 	@Column
 	private String unit_type;
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
+	@JoinColumn(name = "itemFilter_id")
 	private List<OptionException> options;
 
 	public Integer getId() {

@@ -6,6 +6,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,9 +39,9 @@ public class RowViewController extends MainController{
 		return service.save(rowView);
 	}
 
-	@RequestMapping(value="/delete", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON)
-	public void delete(@RequestBody RowView rowView) {
-		service.delete(rowView);
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON)
+	public void delete(@PathVariable("id") Integer id) {
+		service.delete(id);
 	}
 
 }

@@ -6,10 +6,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -30,11 +30,15 @@ public class Widget implements Serializable {
 
 	@Column
 	private String classCol;
+	
+	@Column
+	private Integer columnLayout;
 
 	@Column
 	private String caption;
 
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
+	@JoinColumn(name = "widget_id")
 	private List<ItemFilter> optionGraph;
 
 	public Integer getId() {
@@ -55,6 +59,14 @@ public class Widget implements Serializable {
 
 	public String getClassCol() {
 		return classCol;
+	}
+	
+	public Integer getColumnLayout() {
+		return columnLayout;
+	}
+
+	public void setColumnLayout(Integer columnLayout) {
+		this.columnLayout = columnLayout;
 	}
 
 	public void setClassCol(String classCol) {
