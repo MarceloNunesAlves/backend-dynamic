@@ -35,9 +35,7 @@ public class Company implements Serializable {
 	@Column(name = "fontSecondaryDark")
 	private Boolean fontSecondaryDark;
 	@Column(name = "logo", nullable=true, columnDefinition="mediumblob")
-	private byte[] logo;
-	@Transient
-	private String logoStr;
+	private String logo;
 	
 	public Integer getId() {
 		return id;
@@ -75,17 +73,11 @@ public class Company implements Serializable {
 	public void setFontSecondaryDark(Boolean fontSecondaryDark) {
 		this.fontSecondaryDark = fontSecondaryDark;
 	}
-	public byte[] getLogo() {
+	public String getLogo() {
 		return logo;
 	}
-	public void setLogo(byte[] logo) {
+	public void setLogo(String logo) {
 		this.logo = logo;
-	}
-	public String getLogoStr() {
-		return logoStr;
-	}
-	public void setLogoStr(String logoStr) {
-		this.logoStr = logoStr;
 	}
 
 }

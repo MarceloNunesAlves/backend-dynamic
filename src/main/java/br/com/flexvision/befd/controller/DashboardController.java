@@ -6,6 +6,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,8 +22,8 @@ public class DashboardController extends MainController{
 	@Autowired
 	private DashboardService service; 
 	
-	@RequestMapping(value="/", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
-	public @ResponseBody Optional<Dashboard> findById(Integer id) {
+	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
+	public @ResponseBody Optional<Dashboard> findById(@PathVariable("id") Integer id) {
 		return service.findById(id);
 	}
 	
@@ -34,6 +35,12 @@ public class DashboardController extends MainController{
 	@RequestMapping(value="/", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON)
 	public @ResponseBody Dashboard save(@RequestBody Dashboard dashboard) {
 		return service.save(dashboard);
+	}
+
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON)
+	public @ResponseBody Boolean delete(@PathVariable("id") Integer id) {
+		service.deleteById(id);
+		return true;
 	}
 
 }
