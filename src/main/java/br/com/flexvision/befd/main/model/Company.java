@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table
@@ -33,8 +34,10 @@ public class Company implements Serializable {
 	private String colorSecondary;
 	@Column(name = "fontSecondaryDark")
 	private Boolean fontSecondaryDark;
-	@Column(name = "logo")
-	private Byte[] logo;
+	@Column(name = "logo", nullable=true, columnDefinition="mediumblob")
+	private byte[] logo;
+	@Transient
+	private String logoStr;
 	
 	public Integer getId() {
 		return id;
@@ -72,11 +75,17 @@ public class Company implements Serializable {
 	public void setFontSecondaryDark(Boolean fontSecondaryDark) {
 		this.fontSecondaryDark = fontSecondaryDark;
 	}
-	public Byte[] getLogo() {
+	public byte[] getLogo() {
 		return logo;
 	}
-	public void setLogo(Byte[] logo) {
+	public void setLogo(byte[] logo) {
 		this.logo = logo;
 	}
-	
+	public String getLogoStr() {
+		return logoStr;
+	}
+	public void setLogoStr(String logoStr) {
+		this.logoStr = logoStr;
+	}
+
 }
