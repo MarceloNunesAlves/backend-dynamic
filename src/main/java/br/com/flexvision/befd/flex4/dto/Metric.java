@@ -19,6 +19,7 @@ public class Metric implements Serializable{
 	private String color;
 	private int position;
 	private List<SubItem> options;
+	private DataSourceOrigin ori;
 	
 	public Metric() {
 		super();
@@ -61,11 +62,9 @@ public class Metric implements Serializable{
 	public int getPosition() {
 		return position;
 	}
-
 	public void setPosition(int position) {
 		this.position = position;
 	}
-
 	public void setOptions(List<SubItem> options) {
 		this.options = options;
 	}
@@ -74,6 +73,12 @@ public class Metric implements Serializable{
 	}
 	public void setTituloSerie(String tituloSerie) {
 		this.tituloSerie = tituloSerie;
+	}
+	public DataSourceOrigin getOri() {
+		return ori;
+	}
+	public void setOri(DataSourceOrigin ori) {
+		this.ori = ori;
 	}
 
 }

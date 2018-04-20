@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
+
+import br.com.flexvision.befd.flex4.dto.DataSourceOrigin;
 import br.com.flexvision.befd.flex4.dto.Metric;
 
 @Repository
@@ -36,6 +38,7 @@ public class MetricDAO extends BaseFlex4DAO{
 	        m.setTituloSerie(m.getName());
 	        m.setNdt_id((Integer) record[i++]);
 	        m.setUnit_type((String) record[i++]);
+	        m.setOri(DataSourceOrigin.FLEX);
 	        listMetric.add(m);
 		});
 		

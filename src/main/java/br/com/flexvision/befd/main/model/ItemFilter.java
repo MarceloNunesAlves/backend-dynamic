@@ -6,12 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import br.com.flexvision.befd.flex4.dto.DataSourceOrigin;
 
 @Entity
 public class ItemFilter implements Serializable {
@@ -43,6 +43,8 @@ public class ItemFilter implements Serializable {
 	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
 	@JoinColumn(name = "itemFilter_id")
 	private List<OptionException> options;
+	@Column
+	private DataSourceOrigin ori;
 
 	public Integer getId() {
 		return id;
@@ -94,6 +96,15 @@ public class ItemFilter implements Serializable {
 	public void setPosition(Integer position) {
 		this.position = position;
 	}
+
+	public DataSourceOrigin getOri() {
+		return ori;
+	}
+
+	public void setOri(DataSourceOrigin ori) {
+		this.ori = ori;
+	}
+
 	public List<OptionException> getOptions() {
 		return options;
 	}
