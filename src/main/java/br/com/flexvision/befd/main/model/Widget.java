@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Widget implements Serializable {
@@ -39,6 +40,7 @@ public class Widget implements Serializable {
 
 	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
 	@JoinColumn(name = "widget_id")
+	@OrderBy("position ASC")
 	private List<ItemFilter> optionGraph;
 
 	public Integer getId() {

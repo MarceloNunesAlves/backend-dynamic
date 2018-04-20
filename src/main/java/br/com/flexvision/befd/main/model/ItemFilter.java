@@ -36,6 +36,10 @@ public class ItemFilter implements Serializable {
 	private int ndt_id;
 	@Column
 	private String unit_type;
+	@Column
+	private String color;
+	@Column
+	private Integer position;
 	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
 	@JoinColumn(name = "itemFilter_id")
 	private List<OptionException> options;
@@ -77,6 +81,18 @@ public class ItemFilter implements Serializable {
 	}
 	public void setUnit_type(String unit_type) {
 		this.unit_type = unit_type;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public Integer getPosition() {
+		return position;
+	}
+	public void setPosition(Integer position) {
+		this.position = position;
 	}
 	public List<OptionException> getOptions() {
 		return options;

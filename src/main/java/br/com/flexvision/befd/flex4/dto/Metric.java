@@ -16,6 +16,8 @@ public class Metric implements Serializable{
 	private String tituloSerie;
 	private int ndt_id;
 	private String unit_type;
+	private String color;
+	private int position;
 	private List<SubItem> options;
 	
 	public Metric() {
@@ -47,9 +49,23 @@ public class Metric implements Serializable{
 	public void setUnit_type(String unit_type) {
 		this.unit_type = unit_type;
 	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public List<SubItem> getOptions() {
 		return options;
 	}
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
 	public void setOptions(List<SubItem> options) {
 		this.options = options;
 	}
