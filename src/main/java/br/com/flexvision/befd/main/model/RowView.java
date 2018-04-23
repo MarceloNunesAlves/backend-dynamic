@@ -31,7 +31,7 @@ public class RowView implements Serializable {
 	@JoinColumn(name = "dashboard_id")
 	private Dashboard dashboard;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
 	@JoinColumn(name = "rowView_id")
 	private List<Widget> Widgets;
 

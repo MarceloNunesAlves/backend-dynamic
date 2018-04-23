@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import br.com.flexvision.befd.flex4.dto.Metric;
 import br.com.flexvision.befd.flex4.dto.Serie;
 
 @Repository
@@ -23,7 +25,7 @@ public class OtherDataDAO {
 
 	private Logger LOG;
 	
-	public List<Serie> listSerieOther(){
+	public List<Serie> listSerieOther(Metric m){
 		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
 		List<Serie> list = new ArrayList<Serie>();
@@ -33,9 +35,11 @@ public class OtherDataDAO {
 			calIni.add(Calendar.HOUR_OF_DAY, -2);
 			
 			Connection conn = getConnection();
-			PreparedStatement prep = conn.prepareStatement("exec [prc_data_sim] @dt_ini=?, @dt_fin=?");
+			PreparedStatement prep = conn.prepareStatement("exec [prc_data_sim] @dt_ini=?, @dt_fin=?, @metric=?");
 			prep.setTimestamp(1, new Timestamp(calIni.getTimeInMillis()));
 			prep.setTimestamp(2, new Timestamp(calFin.getTimeInMillis()));
+			prep.setInt(3, m.getMet_id());
+			System.out.println(m.getMet_id());
 			ResultSet rs = prep.executeQuery();
 			
 			try {

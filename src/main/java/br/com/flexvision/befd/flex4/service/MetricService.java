@@ -112,7 +112,7 @@ public class MetricService {
 	}
 
 	private DetailSerie dataOther(Metric m) {
-		List<Serie> list = serviceOther.listSerieOther();
+		List<Serie> list = serviceOther.listSerieOther(m);
 		return new DetailSerie(m, list);
 	}
 
