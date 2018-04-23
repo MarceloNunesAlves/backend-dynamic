@@ -6,17 +6,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import br.com.flexvision.befd.flex4.dto.Serie;
 
 @Repository
 public class OtherDataDAO {
 
+	private Logger LOG;
+	
 	public List<Serie> listSerieOther(){
+		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
 		List<Serie> list = new ArrayList<Serie>();
 		try {
 			Calendar calIni = Calendar.getInstance();
@@ -24,26 +33,25 @@ public class OtherDataDAO {
 			calIni.add(Calendar.HOUR_OF_DAY, -2);
 			
 			Connection conn = getConnection();
-			PreparedStatement prep = conn.prepareStatement("exec [prc_data_sim] :ini :fin");
-			prep.setTimestamp(0, new Timestamp(calIni.getTimeInMillis()));
-			prep.setTimestamp(1, new Timestamp(calFin.getTimeInMillis()));
+			PreparedStatement prep = conn.prepareStatement("exec [prc_data_sim] @dt_ini=?, @dt_fin=?");
+			prep.setTimestamp(1, new Timestamp(calIni.getTimeInMillis()));
+			prep.setTimestamp(2, new Timestamp(calFin.getTimeInMillis()));
 			ResultSet rs = prep.executeQuery();
 			
 			try {
 				 while (rs.next()) {
-					 System.out.println(rs.getTime("time"));
 					 Calendar cal = Calendar.getInstance();
-					 cal.setTimeInMillis(rs.getTime("time").getTime());
+					 cal.setTimeInMillis(sdf.parse(rs.getString("time")).getTime());
 					 list.add(new Serie(cal, rs.getBigDecimal("value")));
 				 }
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println(e);
 	        } finally {
 	            conn.close();
 	            rs.close();
 	        }
 		}catch (SQLException | ClassNotFoundException e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 			
 		return list;
